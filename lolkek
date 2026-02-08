@@ -1,0 +1,90 @@
+'''
+from unittest import result
+number  = int(input("Введи число:"))
+power = int(input("Введи степень (0- 7):"))
+if 0 <= power <= 7:
+    result = number ** power
+    print("Результат:", result)
+else:    print("Степень должна быть от 0 до 7")
+
+number = int(input("Введи число: 1-100:"))
+if 1 <= number <= 100:
+    for i in range(1, 11):
+        result = number * i
+        print(f"{number} x {i} = {result}")
+else:    print("Число должно быть от 1 до 100")
+'''
+#Ви розробляєте програму для розрахунку вартості комплексного
+#обіду в ресторані. Користувач вводить ціну основної страви, напою та десерту. Програма повинна обчислити загальну вартість обіду, враховуючи 10% чайові.
+print("=== МЕНЮ ===")
+
+print("Закуски: 1 - Салат(5$), 2 - Суп(7$)")
+print("Основні: 1 - Курка(10$), 2 - Риба(12$)")
+print("Десерти: 1 - Морозиво(3$), 2 - Фрукти(4$)")
+
+total = 0
+discount = 0
+drink = False
+
+# ===== Закуска =====
+snack = input("Оберіть закуску (1/2): ")
+
+if snack == "1":
+    total += 5
+    snack_name = "Салат"
+else:
+    total += 7
+    snack_name = "Суп"
+
+#Основна блюдо
+main = input("Оберіть основну страву (1/2): ")
+
+if main == "1":
+    total += 10
+    main_name = "Курка"
+else:
+    total += 12
+    main_name = "Риба"
+
+#  Десерт 
+dessert = input("Оберіть десерт (1/2): ")
+
+if dessert == "1":
+    total += 3
+    dessert_name = "Морозиво"
+else:
+    total += 4
+    dessert_name = "Фрукти"
+
+print("\nПочаткова сума:", total, "$")
+
+# специальные условия
+
+if snack_name == "Суп" and main_name == "Риба":
+    total -= 2
+    print("Знижка 2$ на десерт!")
+
+if main_name == "Курка" and dessert_name == "Морозиво":
+    drink = True
+
+
+# я хз как на русс пусть будет знижки
+
+
+# если все 3 → 10%
+discount = 10
+
+# если больше 20$ → 15%
+if total > 20:
+    discount = 15
+status = input("Ви постійний клієнт? (так/ні): ")
+if status == "так":
+    discount += 5
+# проценты
+total = total * (100 - discount) / 100
+# рЕзультат
+print("\nЗагальна знижка:", discount, "%")
+print("До сплати:", round(total, 2), "$")
+
+if drink:
+    print("Ви отримали безкоштовний чай")
